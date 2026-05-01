@@ -2,25 +2,23 @@
 # Site-wide settings. Edit these once and they propagate across every page.
 # ---------------------------------------------------------------------------
 
-title:       "Zhiwei Shang"
-description: "Personal website of Zhiwei Shang, PhD Candidate in Management & Strategy."
-url:         ""    # e.g. "https://zhiweishang.github.io" (optional, fine to leave blank)
+title:       "Yangyi Deng"
+description: "Personal website of Yangyi Deng, PhD Candidate in Business Economics."
+url:         ""    # e.g. "https://yydeng.github.io" (optional, fine to leave blank)
 baseurl:     ""    # leave "" if hosting at <username>.github.io
 
 # Author profile — used in the page header and in the footer.
 author:
-  name:           "Zhiwei Shang"
-  role:           "PhD Candidate in Management & Strategy"
-  institution:    "The University of Hong Kong"
-  email:          "zwshang@connect.hku.hk"
+  name:           "Yangyi Deng"
+  role:           "PhD Candidate in Business Economics"
+  institution:    "The Chinese University of Hong Kong"
+  email:          "dengyangyi@link.cuhk.edu.hk"
   location:       "Hong Kong"
   photo:          "/images/profile.JPG"
   cv:             ""
   googlescholar:  ""
   github:         ""
-
-updated: "April 2026"
-
+ 
 # ---------------------------------------------------------------------------
 # Collections — each markdown file in _publications/, _talks/, _teaching/
 # becomes one entry on the corresponding page.
