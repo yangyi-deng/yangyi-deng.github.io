@@ -1,0 +1,23 @@
+---
+layout: default
+nav: talks
+header_compact: true
+title: Talks
+permalink: /talks/
+---
+
+<section>
+  <h2>Talks &amp; Presentations</h2>
+
+  {% assign sorted = site.talks | sort: "date" | reverse %}
+  {% assign grouped = sorted | group_by_exp: "t", "t.date | date: '%Y'" %}
+
+  {% for year_group in grouped %}
+    <h3 class="subsection">{{ year_group.name }}</h3>
+    <ul class="talk-list">
+      {% for talk in year_group.items %}
+        {% include talk.html talk=talk %}
+      {% endfor %}
+    </ul>
+  {% endfor %}
+</section>

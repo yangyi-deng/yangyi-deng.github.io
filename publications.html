@@ -1,0 +1,45 @@
+---
+layout: default
+nav: publications
+header_compact: true
+title: Publications
+permalink: /publications/
+---
+
+<section>
+  <h2>Publications</h2>
+  {% if site.author.googlescholar %}
+    <p class="section-intro">
+      You can also find my articles on my
+      <a href="{{ site.author.googlescholar }}" target="_blank" rel="noopener">Google Scholar profile</a>.
+    </p>
+  {% endif %}
+
+  {% assign jmp = site.publications | where: "section", "jmp" | sort: "date" | reverse %}
+  {% if jmp.size > 0 %}
+    <h3 class="subsection">Job Market Paper</h3>
+    {% for pub in jmp %}{% include publication.html pub=pub %}{% endfor %}
+  {% endif %}
+
+  {% assign working = site.publications | where: "section", "working" | sort: "date" | reverse %}
+  {% if working.size > 0 %}
+    <h3 class="subsection">Working Papers</h3>
+    {% for pub in working %}{% include publication.html pub=pub %}{% endfor %}
+  {% endif %}
+
+  {% assign published = site.publications | where: "section", "published" | sort: "date" | reverse %}
+  {% if published.size > 0 %}
+    <h3 class="subsection">Published</h3>
+    {% for pub in published %}{% include publication.html pub=pub %}{% endfor %}
+  {% endif %}
+
+  {% assign wip = site.publications | where: "section", "wip" %}
+  {% if wip.size > 0 %}
+    <h3 class="subsection">Work in Progress</h3>
+    <ul class="wip-list">
+      {% for pub in wip %}
+        <li>{{ pub.title }}{% if pub.coauthors %}, with{% for c in pub.coauthors %}{% if forloop.last and forloop.length > 1 %}{% if forloop.length > 2 %},{% endif %} and {% elsif forloop.index > 1 %}, {% else %} {% endif %}{% if c.url %}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}{% endfor %}{% endif %}.</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>
