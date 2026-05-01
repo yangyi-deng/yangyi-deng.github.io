@@ -1,6 +1,7 @@
 ---
 title: "Interaction-Adjusted Concentration: A Quadratic Generalization of the HHI"
 section: working 
+date: 2026-04-21
 coauthors:
   - name: "Chiu Yu Ko"
     url: "https://kochiuyu.github.io"
