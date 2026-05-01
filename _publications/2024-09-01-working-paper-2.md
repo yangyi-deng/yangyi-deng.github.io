@@ -3,7 +3,7 @@ title: "Interaction-Adjusted Concentration: A Quadratic Generalization of the HH
 section: working 
 coauthors:
   - name: "Chiu Yu Ko"
-    url: "https://example.com"
+    url: "https://kochiuyu.github.io"
 paperurl: "https://ssrn.com/abstract=6619260"
 ---
 
