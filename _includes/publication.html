@@ -29,7 +29,7 @@ The body of the markdown file is rendered as the abstract.
 
     {%- if include.pub.paperurl -%}
       {%- if sep_needed %} <span class="sep">·</span> {% endif -%}
-      <a href="{{ include.pub.paperurl | relative_url }}">[PDF]</a>
+      <a href="{{ include.pub.paperurl | relative_url }}">Link</a>
       {%- assign sep_needed = true -%}
     {%- endif -%}
 
