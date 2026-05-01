@@ -1,0 +1,53 @@
+# ---------------------------------------------------------------------------
+# Site-wide settings. Edit these once and they propagate across every page.
+# ---------------------------------------------------------------------------
+
+title:       "Zhiwei Shang"
+description: "Personal website of Zhiwei Shang, PhD Candidate in Economics."
+url:         ""    # e.g. "https://zhiweishang.github.io" (optional, fine to leave blank)
+baseurl:     ""    # leave "" if hosting at <username>.github.io
+
+# Author profile — used in the page header and in the footer.
+author:
+  name:           "Zhiwei Shang"
+  role:           "PhD Candidate in Economics"
+  institution:    "University Name"
+  email:          "zhiwei.shang1@gmail.com"
+  photo:          "/images/profile.jpg"
+  cv:             "/files/cv.pdf"
+  googlescholar:  "https://scholar.google.com"
+  github:         "https://github.com/"
+
+updated: "April 2026"
+
+# ---------------------------------------------------------------------------
+# Collections — each markdown file in _publications/, _talks/, _teaching/
+# becomes one entry on the corresponding page.
+# ---------------------------------------------------------------------------
+collections:
+  publications:
+    output: false
+  talks:
+    output: false
+  teaching:
+    output: false
+
+defaults:
+  - scope: { path: "" }
+    values:
+      layout: default
+
+# ---------------------------------------------------------------------------
+# Build settings
+# ---------------------------------------------------------------------------
+markdown: kramdown
+plugins: []
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md
+  - zhiweishang.github.io-master
+  - .bundle
+  - "*.gem"
