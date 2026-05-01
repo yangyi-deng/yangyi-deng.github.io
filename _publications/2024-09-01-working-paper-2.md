@@ -1,7 +1,6 @@
 ---
 title: "Interaction-Adjusted Concentration: A Quadratic Generalization of the HHI"
-section: working
-date: 2026-04-21
+section: working 
 coauthors:
   - name: "Chiu Yu Ko"
     url: "https://example.com"
