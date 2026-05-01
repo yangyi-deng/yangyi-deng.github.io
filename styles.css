@@ -113,6 +113,11 @@ a:hover {
   align-items: start;
 }
 
+.page--no-sidebar {
+  grid-template-columns: 1fr;
+  max-width: 880px;
+}
+
 /* ---------- Sidebar ---------- */
 .sidebar {
   position: sticky;
