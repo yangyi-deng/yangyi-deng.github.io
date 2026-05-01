@@ -144,7 +144,7 @@ a:hover {
 }
 .sidebar-institution {
   font-family: var(--sans);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--ink);
   font-weight: 500;
   margin: 0 0 14px;
