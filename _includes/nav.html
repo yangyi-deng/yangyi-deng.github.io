@@ -1,0 +1,5 @@
+<nav class="page-nav" aria-label="Main navigation">
+  <a href="{{ '/' | relative_url }}"{% if page.nav == 'about' %} aria-current="page"{% endif %}>Home</a>
+  <a href="{{ '/publications/' | relative_url }}"{% if page.nav == 'publications' %} aria-current="page"{% endif %}>Research</a>
+  <a href="{{ '/cv/' | relative_url }}"{% if page.nav == 'cv' %} aria-current="page"{% endif %}>CV</a>
+</nav>

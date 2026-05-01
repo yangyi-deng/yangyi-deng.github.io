@@ -1,0 +1,95 @@
+---
+layout: default
+nav: cv
+header_compact: true
+title: CV
+permalink: /cv/
+---
+
+<section>
+  <h2>Curriculum Vitae</h2>
+  {% if site.author.cv %}
+    <p class="section-intro">
+      A complete PDF version is available <a href="{{ site.author.cv | relative_url }}">here</a>.
+    </p>
+  {% endif %}
+
+  <h3 class="subsection">Education</h3>
+  <ul class="cv-list">
+    <li class="cv-item">
+      <div class="cv-line">
+        <span class="cv-title">Ph.D. in Economics</span>
+        <span class="cv-date">2022 – 2027 (expected)</span>
+      </div>
+      <div class="cv-detail">{{ site.author.institution }}. Committee: Prof. A (chair), Prof. B, Prof. C.</div>
+    </li>
+    <li class="cv-item">
+      <div class="cv-line">
+        <span class="cv-title">M.A. in Economics</span>
+        <span class="cv-date">2020 – 2022</span>
+      </div>
+      <div class="cv-detail">University Name.</div>
+    </li>
+    <li class="cv-item">
+      <div class="cv-line">
+        <span class="cv-title">B.A. in Economics</span>
+        <span class="cv-date">2016 – 2020</span>
+      </div>
+      <div class="cv-detail">University Name. Honors, summa cum laude.</div>
+    </li>
+  </ul>
+
+  <h3 class="subsection">Research Experience</h3>
+  <ul class="cv-list">
+    <li class="cv-item">
+      <div class="cv-line">
+        <span class="cv-title">Research Assistant to Prof. Name</span>
+        <span class="cv-date">2021 – 2022</span>
+      </div>
+      <div class="cv-detail">Institution. Topic of project.</div>
+    </li>
+  </ul>
+
+  <h3 class="subsection">Awards &amp; Fellowships</h3>
+  <ul class="cv-list">
+    <li class="cv-item">
+      <div class="cv-line">
+        <span class="cv-title">Award Name dissertation fellowship</span>
+        <span class="cv-date">2026</span>
+      </div>
+    </li>
+    <li class="cv-item">
+      <div class="cv-line">
+        <span class="cv-title">Travel grant, Conference Name</span>
+        <span class="cv-date">2025</span>
+      </div>
+    </li>
+    <li class="cv-item">
+      <div class="cv-line">
+        <span class="cv-title">Departmental Fellowship</span>
+        <span class="cv-date">2022 – 2024</span>
+      </div>
+    </li>
+  </ul>
+
+  <h3 class="subsection">Publications &amp; Working Papers</h3>
+  <p class="section-intro">See the full <a href="{{ '/publications/' | relative_url }}">publications page</a>.</p>
+
+  <h3 class="subsection">Conference Presentations</h3>
+  <p class="section-intro">See the full <a href="{{ '/talks/' | relative_url }}">talks page</a>.</p>
+
+  <h3 class="subsection">Teaching</h3>
+  <p class="section-intro">See the full <a href="{{ '/teaching/' | relative_url }}">teaching page</a>.</p>
+
+  <h3 class="subsection">Service &amp; Referee</h3>
+  <ul class="cv-list">
+    <li class="cv-item"><div class="cv-detail">Referee: <em>Journal Name</em>, <em>Journal Name</em>.</div></li>
+    <li class="cv-item"><div class="cv-detail">Department graduate student representative, 2024 – 2025.</div></li>
+  </ul>
+
+  <h3 class="subsection">Skills</h3>
+  <ul class="cv-list">
+    <li class="cv-item"><div class="cv-detail"><strong>Languages:</strong> English (fluent), Mandarin (native).</div></li>
+    <li class="cv-item"><div class="cv-detail"><strong>Software:</strong> Stata, R, Python, LaTeX, Git.</div></li>
+  </ul>
+</section>
