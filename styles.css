@@ -273,10 +273,15 @@ em { color: var(--ink); }
   color: var(--ink-muted);
   line-height: 1.6;
   margin: 0;
+}
+
+.paper-abstract p {
+  margin: 0;
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
 }
+
 .paper-abstract em {
   font-style: normal;
   font-weight: 600;
