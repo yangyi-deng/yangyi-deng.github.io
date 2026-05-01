@@ -29,18 +29,6 @@
           </p>
           <p class="contact-line">
             <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
-            {% if site.author.cv %}
-              <span class="sep">·</span>
-              <a href="{{ site.author.cv | relative_url }}">CV</a>
-            {% endif %}
-            {% if site.author.googlescholar %}
-              <span class="sep">·</span>
-              <a href="{{ site.author.googlescholar }}" target="_blank" rel="noopener">Google Scholar</a>
-            {% endif %}
-            {% if site.author.github %}
-              <span class="sep">·</span>
-              <a href="{{ site.author.github }}" target="_blank" rel="noopener">GitHub</a>
-            {% endif %}
           </p>
         </div>
         {% if site.author.photo %}
@@ -53,9 +41,7 @@
 
     {{ content }}
 
-    <footer>
-      <p>Last updated: {{ site.updated }}.</p>
-    </footer>
+
 
   </main>
 </body>
