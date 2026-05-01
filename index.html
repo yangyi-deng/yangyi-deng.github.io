@@ -8,29 +8,12 @@ permalink: /
 <section>
   <h2>About</h2>
   <p>
-    I am a PhD candidate in Economics at <em>{{ site.author.institution }}</em>. My research lies at
-    the intersection of labor economics and applied microeconomics, with a focus on how technological
-    change shapes the structure of work, skill demand, and firm hiring behavior.
+    I am a PhD candidate in Business Economics at <em>{{ site.author.institution }}</em>. 
+    My research interests are in applied game theory, microeconomic theory, and industrial organization, with a particular focus on measurement, ranking, and aggregation problems.
   </p>
-  <p>
-    I use large-scale administrative records and online job posting data, combined with
-    quasi-experimental methods, to study these questions. Before starting my PhD, I worked as a
-    research assistant at <em>Institution</em>.
-  </p>
-  <p>
+  <!-- <p>
     I am on the <strong>20XX–XX</strong> academic job market. Please feel free to reach out
     at <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>.
-  </p>
+  </p> -->
 </section>
 
-<section>
-  <h2>News</h2>
-  <ul class="news-list">
-    {% for item in site.data.news %}
-      <li>
-        <span class="news-date">{{ item.date }}</span>
-        <span>{{ item.text | markdownify | remove_first: '<p>' | remove: '</p>' | strip_newlines }}</span>
-      </li>
-    {% endfor %}
-  </ul>
-</section>
