@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% if page.title and page.nav != 'about' %}{{ page.title }} — {% endif %}{{ site.author.name }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}" />
+</head>
+<body>
+  <main class="container">
+
+    {% if page.header_compact %}
+      <header class="intro intro-compact">
+        <div class="intro-text">
+          <h1><a href="{{ '/' | relative_url }}" class="name-link">{{ site.author.name }}</a></h1>
+          <p class="affiliation">{{ site.author.role }} · <span class="institution">{{ site.author.institution }}</span></p>
+        </div>
+      </header>
+    {% else %}
+      <header class="intro">
+        <div class="intro-text">
+          <h1>{{ site.author.name }}</h1>
+          <p class="affiliation">{{ site.author.role }}<br />
+            <span class="institution">{{ site.author.institution }}</span>
+          </p>
+          <p class="contact-line">
+            <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+            {% if site.author.cv %}
+              <span class="sep">·</span>
+              <a href="{{ site.author.cv | relative_url }}">CV</a>
+            {% endif %}
+            {% if site.author.googlescholar %}
+              <span class="sep">·</span>
+              <a href="{{ site.author.googlescholar }}" target="_blank" rel="noopener">Google Scholar</a>
+            {% endif %}
+            {% if site.author.github %}
+              <span class="sep">·</span>
+              <a href="{{ site.author.github }}" target="_blank" rel="noopener">GitHub</a>
+            {% endif %}
+          </p>
+        </div>
+        {% if site.author.photo %}
+          <img src="{{ site.author.photo | relative_url }}" alt="Portrait of {{ site.author.name }}" class="headshot" onerror="this.style.display='none'" />
+        {% endif %}
+      </header>
+    {% endif %}
+
+    {% include nav.html %}
+
+    {{ content }}
+
+    <footer>
+      <p>Last updated: {{ site.updated }}.</p>
+    </footer>
+
+  </main>
+</body>
+</html>

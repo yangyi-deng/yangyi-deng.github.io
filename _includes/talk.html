@@ -1,0 +1,8 @@
+{%- comment -%}
+Renders one talk. Frontmatter fields: title, type, venue, location, date.
+{%- endcomment -%}
+<li class="talk">
+  <span class="talk-type">{{ include.talk.type }}</span>
+  <span class="talk-title">{{ include.talk.title }}</span>
+  <span class="talk-meta">{{ include.talk.venue }}{% if include.talk.location %}, {{ include.talk.location }}{% endif %} · {{ include.talk.date | date: "%b %Y" }}</span>
+</li>

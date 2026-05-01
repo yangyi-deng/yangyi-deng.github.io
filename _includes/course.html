@@ -1,0 +1,10 @@
+{%- comment -%}
+Renders one teaching entry. Frontmatter fields:
+  title (course name), level (Undergraduate/Graduate), role (Instructor/TA),
+  university, professor, term.
+{%- endcomment -%}
+<li class="course">
+  <span class="course-type">{{ include.course.level }}</span>
+  <span class="course-title">{{ include.course.title }}</span>
+  <span class="course-meta">{% if include.course.role == 'TA' and include.course.professor %}for {{ include.course.professor }}{% else %}{{ include.course.university }}{% endif %} · {{ include.course.term }}</span>
+</li>
