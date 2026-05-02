@@ -79,7 +79,7 @@ hide_sidebar: true
   {% endfor %}
 {% endif %}
   
-  {% assign wip = site.publications | where: "section", "wip" %}
+ {% assign wip = site.publications | where: "section", "wip" %}
 {% if wip.size > 0 %}
   <h3 class="subsection">Work in Progress</h3>
   <ul class="wip-list">
@@ -88,20 +88,19 @@ hide_sidebar: true
         {{ pub.title }}
         {% if pub.coauthors %}
           (with 
-          {% for c in pub.coauthors %}
-            {% if c.url %}
+          {%- for c in pub.coauthors -%}
+            {%- if c.url -%}
               <a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>
-            {% else %}
+            {%- else -%}
               {{ c.name }}
-            {% endif %}
-            {% if forloop.last %}
-              {% if forloop.length > 1 %}){% else %}){% endif %}
-            {% elsif forloop.length > 2 %}
+            {%- endif -%}
+            {%- if forloop.last -%}
+            {%- elsif forloop.rindex == 2 -%}
+              and 
+            {%- else -%}
               , 
-            {% else %}
-              {% if forloop.index == 1 %} and {% endif %}
-            {% endif %}
-          {% endfor %}
+            {%- endif -%}
+          {%- endfor -%})
         {% endif %}.
       </li>
     {% endfor %}
