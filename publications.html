@@ -22,8 +22,12 @@ hide_sidebar: true
     {% for pub in published %}{% include publication.html pub=pub %}{% endfor %}
   {% endif %}
 
-  {% for pub in working %}{% include publication.html pub=pub %}{% endfor %} {% endif %} {% assign wip = site.publications | where: "section", "wip" %} {% if wip.size > 0 %}
-
+  {% assign working = site.publications | where: "section", "working" | sort: "date" | reverse %}
+  {% if working.size > 0 %}
+    <h3 class="subsection">Working Papers</h3>
+    {% for pub in working %}{% include publication.html pub=pub %}{% endfor %}
+  {% endif %}
+  
   {% assign wip = site.publications | where: "section", "wip" %}
 {% if wip.size > 0 %}
   <h3 class="subsection">Work in Progress</h3>
