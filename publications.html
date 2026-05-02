@@ -26,6 +26,10 @@ hide_sidebar: true
 {% if working.size > 0 %}
   <h3 class="subsection">Working Papers</h3>
 
+ {% assign working = site.publications | where: "section", "working" | sort: "date" | reverse %}
+{% if working.size > 0 %}
+  <h3 class="subsection">Working Papers</h3>
+
   {% for pub in working %}
     <article class="paper">
       <h4 class="paper-title">
@@ -36,23 +40,7 @@ hide_sidebar: true
         {% endif %}
 
         {% if pub.coauthors %}
-          <span class="paper-coauthors-title">
-            (with
-            {% for c in pub.coauthors %}
-              {% if c.url %}
-                <a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>
-              {% else %}
-                {{ c.name }}
-              {% endif %}
-
-              {% if forloop.last %}
-              {% elsif forloop.rindex == 2 %}
-                and
-              {% else %}
-                ,
-              {% endif %}
-            {% endfor %})
-          </span>
+          <span class="paper-coauthors-title">(with {% for c in pub.coauthors %}{% if c.url %}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}{% unless forloop.last %}{% if forloop.rindex == 2 %} and {% else %}, {% endif %}{% endunless %}{% endfor %})</span>
         {% endif %}
       </h4>
 
@@ -78,32 +66,20 @@ hide_sidebar: true
     </article>
   {% endfor %}
 {% endif %}
-  
- {% assign wip = site.publications | where: "section", "wip" %}
+
+
+{% assign wip = site.publications | where: "section", "wip" %}
 {% if wip.size > 0 %}
   <h3 class="subsection">Work in Progress</h3>
+
   <ul class="wip-list">
     {% for pub in wip %}
       <li>
         {{ pub.title }}
         {% if pub.coauthors %}
-          (with 
-          {%- for c in pub.coauthors -%}
-            {%- if c.url -%}
-              <a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>
-            {%- else -%}
-              {{ c.name }}
-            {%- endif -%}
-            {%- if forloop.last -%}
-            {%- elsif forloop.rindex == 2 -%}
-              and 
-            {%- else -%}
-              , 
-            {%- endif -%}
-          {%- endfor -%})
+          (with {% for c in pub.coauthors %}{% if c.url %}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}{% unless forloop.last %}{% if forloop.rindex == 2 %} and {% else %}, {% endif %}{% endunless %}{% endfor %})
         {% endif %}.
       </li>
     {% endfor %}
   </ul>
 {% endif %}
-</section>
