@@ -84,19 +84,23 @@ a:hover {
 }
 
 .name-zh {
-  font-family: SimSun, "Songti SC", "STSong", "Noto Serif CJK SC", serif;
-  font-size: 0.68em;
+  font-family: "Songti SC", "STSong", SimSun, "Noto Serif CJK SC", serif;
+  font-size: 0.82em;
   font-weight: 400;
-  letter-spacing: 0;
-  margin-left: 0.12em;
+  letter-spacing: 0.02em;
+  margin-left: 0.16em;
+  color: var(--ink);
+  vertical-align: baseline;
+  position: relative;
+  top: 0.01em;
 }
 
 .site-name .name-zh {
-  font-size: 0.72em;
+  font-size: 0.78em;
 }
 
 .sidebar-name .name-zh {
-  font-size: 0.68em;
+  font-size: 0.82em;
 }
 
 /* ---------- Top nav ---------- */
