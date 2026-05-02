@@ -47,6 +47,5 @@ exclude:
   - Gemfile.lock
   - vendor
   - README.md
-  - zhiweishang.github.io-master
   - .bundle
   - "*.gem"
