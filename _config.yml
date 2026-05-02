@@ -9,7 +9,8 @@ baseurl:     ""    # leave "" if hosting at <username>.github.io
 
 # Author profile — used in the page header and in the footer.
 author:
-  name:           "Yangyi Deng (邓扬义)"
+  name:           "Yangyi Deng"
+  name_zh:        "邓扬义"
   role:           "PhD Candidate in Business Economics"
   institution:    "The Chinese University of Hong Kong"
   email:          "dengyangyi@link.cuhk.edu.hk"
