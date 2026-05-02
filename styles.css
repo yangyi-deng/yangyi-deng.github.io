@@ -84,9 +84,9 @@ a:hover {
 }
 
 .name-zh {
-  font-family: "Songti SC", "STSong", SimSun, "Noto Serif CJK SC", serif;
-  font-size: 0.82em;
-  font-weight: 400;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", SimSun, serif;
+  font-size: 0.84em;
+  font-weight: 500;
   letter-spacing: 0.02em;
   margin-left: 0.16em;
   color: var(--ink);
@@ -100,7 +100,7 @@ a:hover {
 }
 
 .sidebar-name .name-zh {
-  font-size: 0.82em;
+  font-size: 0.84em;
 }
 
 /* ---------- Top nav ---------- */
