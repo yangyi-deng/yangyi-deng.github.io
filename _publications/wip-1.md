@@ -1,5 +1,5 @@
 ---
-title: "Title of project in progress"
+title: "Aggregation Partitioned Data"
 section: wip
 coauthors:
   - name: "Coauthor"
