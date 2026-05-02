@@ -23,10 +23,61 @@ hide_sidebar: true
   {% endif %}
 
   {% assign working = site.publications | where: "section", "working" | sort: "date" | reverse %}
-  {% if working.size > 0 %}
-    <h3 class="subsection">Working Papers</h3>
-    {% for pub in working %}{% include publication.html pub=pub %}{% endfor %}
-  {% endif %}
+{% if working.size > 0 %}
+  <h3 class="subsection">Working Papers</h3>
+
+  {% for pub in working %}
+    <article class="paper">
+      <h4 class="paper-title">
+        {% if pub.paperurl %}
+          <a href="{{ pub.paperurl }}" target="_blank" rel="noopener">{{ pub.title }}</a>
+        {% else %}
+          {{ pub.title }}
+        {% endif %}
+
+        {% if pub.coauthors %}
+          <span class="paper-coauthors-title">
+            (with
+            {% for c in pub.coauthors %}
+              {% if c.url %}
+                <a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>
+              {% else %}
+                {{ c.name }}
+              {% endif %}
+
+              {% if forloop.last %}
+              {% elsif forloop.rindex == 2 %}
+                and
+              {% else %}
+                ,
+              {% endif %}
+            {% endfor %})
+          </span>
+        {% endif %}
+      </h4>
+
+      {% if pub.status or pub.venue %}
+        <p class="paper-meta">
+          {% if pub.status %}
+            <span class="paper-status">{{ pub.status }}</span>
+          {% endif %}
+          {% if pub.status and pub.venue %}
+            <span class="paper-sep"> · </span>
+          {% endif %}
+          {% if pub.venue %}
+            <span class="paper-venue">{{ pub.venue }}</span>
+          {% endif %}
+        </p>
+      {% endif %}
+
+      {% if pub.content != "" %}
+        <div class="paper-abstract">
+          {{ pub.content | markdownify }}
+        </div>
+      {% endif %}
+    </article>
+  {% endfor %}
+{% endif %}
   
   {% assign wip = site.publications | where: "section", "wip" %}
 {% if wip.size > 0 %}
