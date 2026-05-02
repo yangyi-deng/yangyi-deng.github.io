@@ -22,35 +22,7 @@ hide_sidebar: true
     {% for pub in published %}{% include publication.html pub=pub %}{% endfor %}
   {% endif %}
 
-  {% assign working = site.publications | where: "section", "working" | sort: "date" | reverse %}
-{% if working.size > 0 %}
-  <h3 class="subsection">Working Papers</h3>
-  <ul class="working-list">
-    {% for pub in working %}
-      <li>
-        {% if pub.url %}
-          <a href="{{ pub.url }}" target="_blank" rel="noopener">{{ pub.title }}</a>
-        {% else %}
-          {{ pub.title }}
-        {% endif %}
-        
-        {% if pub.coauthors %}
-          (with 
-          {% for c in pub.coauthors %}
-            {% if c.url %}
-              <a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>
-            {% else %}
-              {{ c.name }}
-            {% endif %}
-            {% if forloop.last == false %}
-              {% if forloop.length > 2 %}, {% else %} and {% endif %}
-            {% endif %}
-          {% endfor %})
-        {% endif %}.
-      </li>
-    {% endfor %}
-  </ul>
-{% endif %}
+  {% for pub in working %}{% include publication.html pub=pub %}{% endfor %} {% endif %} {% assign wip = site.publications | where: "section", "wip" %} {% if wip.size > 0 %}
 
   {% assign wip = site.publications | where: "section", "wip" %}
 {% if wip.size > 0 %}
