@@ -26,10 +26,6 @@ hide_sidebar: true
 {% if working.size > 0 %}
   <h3 class="subsection">Working Papers</h3>
 
- {% assign working = site.publications | where: "section", "working" | sort: "date" | reverse %}
-{% if working.size > 0 %}
-  <h3 class="subsection">Working Papers</h3>
-
   {% for pub in working %}
     <article class="paper">
       <h4 class="paper-title">
@@ -37,11 +33,7 @@ hide_sidebar: true
           <a href="{{ pub.paperurl }}" target="_blank" rel="noopener">{{ pub.title }}</a>
         {% else %}
           {{ pub.title }}
-        {% endif %}
-
-        {% if pub.coauthors %}
-          <span class="paper-coauthors-title">(with {% for c in pub.coauthors %}{% if c.url %}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}{% unless forloop.last %}{% if forloop.rindex == 2 %} and {% else %}, {% endif %}{% endunless %}{% endfor %})</span>
-        {% endif %}
+        {% endif %}{% if pub.coauthors %} (with {% for c in pub.coauthors %}{% if c.url %}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}{% unless forloop.last %}{% if forloop.rindex == 2 %}, and {% else %}, {% endif %}{% endunless %}{% endfor %}){% endif %}
       </h4>
 
       {% if pub.status or pub.venue %}
@@ -75,10 +67,7 @@ hide_sidebar: true
   <ul class="wip-list">
     {% for pub in wip %}
       <li>
-        {{ pub.title }}
-        {% if pub.coauthors %}
-          (with {% for c in pub.coauthors %}{% if c.url %}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}{% unless forloop.last %}{% if forloop.rindex == 2 %} and {% else %}, {% endif %}{% endunless %}{% endfor %})
-        {% endif %}.
+        {{ pub.title }}{% if pub.coauthors %} (with {% for c in pub.coauthors %}{% if c.url %}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}{% unless forloop.last %}{% if forloop.rindex == 2 %}, and {% else %}, {% endif %}{% endunless %}{% endfor %}){% endif %}.
       </li>
     {% endfor %}
   </ul>
