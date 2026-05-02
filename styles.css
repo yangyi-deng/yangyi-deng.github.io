@@ -142,6 +142,21 @@ a:hover {
   line-height: 1.2;
   margin: 0 0 8px;
 }
+.name-zh {
+  font-family: SimSun, "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+  font-size: 0.72em;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-left: 0.15em;
+}
+
+.site-name .name-zh {
+  font-size: 0.72em;
+}
+
+.sidebar-name .name-zh {
+  font-size: 0.65em;
+}
 .sidebar-institution {
   font-family: var(--sans);
   font-size: 0.85rem;
