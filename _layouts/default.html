@@ -24,8 +24,13 @@
       {% if site.author.photo %}
         <img src="{{ site.author.photo | relative_url }}" alt="Portrait of {{ site.author.name }}" class="headshot" onerror="this.style.display='none'" />
       {% endif %}
-      <h1 class="sidebar-name">{{ site.author.name }}</h1>
+
+      <h1 class="sidebar-name">
+        <span class="name-en">{{ site.author.name }}</span>{% if site.author.name_zh %} <span class="name-zh">({{ site.author.name_zh }})</span>{% endif %}
+      </h1>
+
       <p class="sidebar-institution">{{ site.author.institution }}</p>
+
       <ul class="sidebar-meta">
         {% if site.author.email %}
           <li>
@@ -40,7 +45,7 @@
         {% endif %}
       </ul>
     </aside>
-     {% endunless %}
+    {% endunless %}
 
     <article class="content">
       {{ content }}
