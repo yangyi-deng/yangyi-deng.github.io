@@ -265,6 +265,22 @@ a:hover {
   line-height: 1.5;
 }
 
+.intro-dept a {
+  color: inherit;
+  border-bottom: 1px solid transparent;
+}
+
+.intro-dept a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.about-text {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
 /* ---------- Research interests list ---------- */
 .research-list {
   font-family: var(--sans);
