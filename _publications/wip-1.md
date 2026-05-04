@@ -1,5 +1,5 @@
 ---
-title: "Aggregation Partitioned Data"
+title: "Aggregating Partitioned Data"
 section: wip
 coauthors:
   - name: "Chiu Yu Ko"
