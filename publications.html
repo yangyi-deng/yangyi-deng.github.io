@@ -69,27 +69,21 @@ hide_sidebar: true
           </p>
         {% endif %}
 
-        {% if pub.posterurl %}
+        {% if pub.posterurl or pub.websiteurl %}
           <p class="paper-links">
-            <a href="{{ pub.posterurl }}" target="_blank" rel="noopener">Poster</a>
+            {% if pub.posterurl %}
+              <a href="{{ pub.posterurl }}" target="_blank" rel="noopener">Poster</a>
+            {% endif %}
+
+            {% if pub.posterurl and pub.websiteurl %}
+              <span class="paper-sep"> · </span>
+            {% endif %}
+
+            {% if pub.websiteurl %}
+              <a href="{{ pub.websiteurl }}" target="_blank" rel="noopener">Website</a>
+            {% endif %}
           </p>
         {% endif %}
-
-        {% if pub.posterurl or pub.websiteurl %}
-  <p class="paper-links">
-    {% if pub.posterurl %}
-      <a href="{{ pub.posterurl }}" target="_blank" rel="noopener">Poster</a>
-    {% endif %}
-
-    {% if pub.posterurl and pub.websiteurl %}
-      <span class="paper-sep"> · </span>
-    {% endif %}
-
-    {% if pub.websiteurl %}
-      <a href="{{ pub.websiteurl }}" target="_blank" rel="noopener">Website</a>
-    {% endif %}
-  </p>
-{% endif %}
 
         {% if pub.content != "" %}
           <div class="paper-abstract">
