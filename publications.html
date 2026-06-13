@@ -69,19 +69,9 @@ hide_sidebar: true
           </p>
         {% endif %}
 
-        {% if pub.paperurl or pub.posterurl %}
+        {% if pub.posterurl %}
           <p class="paper-links">
-            {% if pub.paperurl %}
-              <a href="{{ pub.paperurl }}" target="_blank" rel="noopener">Paper</a>
-            {% endif %}
-
-            {% if pub.paperurl and pub.posterurl %}
-              <span class="paper-sep"> · </span>
-            {% endif %}
-
-            {% if pub.posterurl %}
-              <a href="{{ pub.posterurl }}" target="_blank" rel="noopener">Poster</a>
-            {% endif %}
+            <a href="{{ pub.posterurl }}" target="_blank" rel="noopener">Poster</a>
           </p>
         {% endif %}
 
