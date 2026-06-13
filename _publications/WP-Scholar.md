@@ -5,6 +5,7 @@ date: 2026-05-19
 coauthors:
   - name: "Chiu Yu Ko"
     url: "https://kochiuyu.github.io"
+websiteurl: "https://yydeng.github.io/econ-rating/"
 # paperurl: "https://ssrn.com/abstract=6619260"
 ---
 
