@@ -1,10 +1,21 @@
 {%- comment -%}
 Renders one teaching entry. Frontmatter fields:
-  title (course name), level (Undergraduate/Graduate), role (Instructor/TA),
+  title (course name), level (Undergraduate/Master/PhD), role (Instructor/TA),
   university, professor, term.
+Only level, title and term are required; the separator is emitted only when
+there is something on both sides of it.
+Pass hide_level="yes" to suppress the level label on a repeat of the level
+above it, so each level is announced once per run.
 {%- endcomment -%}
+{%- capture lead -%}
+  {%- if include.course.role == 'TA' and include.course.professor -%}
+    for {{ include.course.professor }}
+  {%- elsif include.course.university -%}
+    {{ include.course.university }}
+  {%- endif -%}
+{%- endcapture -%}
 <li class="course">
-  <span class="course-type">{{ include.course.level }}</span>
+  <span class="course-type">{% unless include.hide_level %}{{ include.course.level }}{% endunless %}</span>
   <span class="course-title">{{ include.course.title }}</span>
-  <span class="course-meta">{% if include.course.role == 'TA' and include.course.professor %}for {{ include.course.professor }}{% else %}{{ include.course.university }}{% endif %} · {{ include.course.term }}</span>
+  <span class="course-meta">{{ lead }}{% if lead != "" and include.course.term %} <span class="course-sep">·</span> {% endif %}{{ include.course.term }}</span>
 </li>
