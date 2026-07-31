@@ -10,7 +10,7 @@ hide_sidebar: true
 <section>
   {% assign jmp = site.publications | where: "section", "jmp" | sort: "date" | reverse %}
   {% if jmp.size > 0 %}
-    <h3 class="subsection">Job Market Paper</h3>
+    <h3 class="subsection subsection--blue">Job Market Paper</h3>
     {% for pub in jmp %}
       {% include publication.html pub=pub %}
     {% endfor %}
@@ -18,7 +18,7 @@ hide_sidebar: true
 
   {% assign published = site.publications | where: "section", "published" | sort: "date" | reverse %}
   {% if published.size > 0 %}
-    <h3 class="subsection">Published</h3>
+    <h3 class="subsection subsection--blue">Published</h3>
     {% for pub in published %}
       {% include publication.html pub=pub %}
     {% endfor %}
@@ -26,7 +26,7 @@ hide_sidebar: true
 
   {% assign working = site.publications | where: "section", "working" | sort: "date" | reverse %}
   {% if working.size > 0 %}
-    <h3 class="subsection">Working Papers</h3>
+    <h3 class="subsection subsection--blue">Working Papers</h3>
 
     {% for pub in working %}
       <article class="paper">
@@ -106,7 +106,7 @@ hide_sidebar: true
 
   {% assign wip = site.publications | where: "section", "wip" %}
   {% if wip.size > 0 %}
-    <h3 class="subsection">Work in Progress</h3>
+    <h3 class="subsection subsection--blue">Work in Progress</h3>
 
     <ul class="wip-list">
       {% for pub in wip %}

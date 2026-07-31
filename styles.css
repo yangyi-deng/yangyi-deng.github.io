@@ -10,6 +10,7 @@
   --bg: #f3f6ee;
   --accent: #7a2e2e;
   --accent-hover: #5a1f1f;
+  --accent-blue: #1f4d8f;
 
   /* Caps the shell, but also keeps a visible margin on screens narrower than
      the cap — otherwise the page runs edge-to-edge on a 1440px laptop. */
@@ -324,6 +325,18 @@ h3.subsection {
   letter-spacing: -0.005em;
   color: var(--ink);
   margin: 48px 0 22px;
+}
+
+/* Two classes, so the colour wins over h3.subsection whatever the source order. */
+.subsection.subsection--blue {
+  color: var(--accent-blue);
+}
+
+/* A qualifier inside a group label — e.g. the institution — steps back from
+   the label itself. em keeps it proportional to the heading. */
+.subsection-note {
+  font-size: 0.74em;
+  font-weight: 400;
 }
 
 /* The first group label needs no leading gap — it opens the section. */
