@@ -1,0 +1,26 @@
+---
+layout: default
+nav: teaching
+header_compact: true
+title: Teaching
+permalink: /teaching/
+hide_sidebar: true
+---
+
+<section>
+  {% if site.teaching.size > 0 %}
+    <h3 class="subsection">Teaching Assistant ({{ site.author.institution }})</h3>
+
+    <ul class="teaching-list">
+      {%- assign prev_level = "" -%}
+      {% for course in site.teaching %}
+        {% if course.level == prev_level %}
+          {% include course.html course=course hide_level="yes" %}
+        {% else %}
+          {% include course.html course=course %}
+        {% endif %}
+        {%- assign prev_level = course.level -%}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>
