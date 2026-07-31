@@ -11,9 +11,12 @@
   --accent: #7a2e2e;
   --accent-hover: #5a1f1f;
 
-  --page-max: 1180px;
+  /* Caps the shell, but also keeps a visible margin on screens narrower than
+     the cap — otherwise the page runs edge-to-edge on a 1440px laptop. */
+  --page-max: min(1166px, 73vw);
   --sidebar-w: 260px;
   --gap: 64px;
+  --gutter: 48px;
 }
 
 /* ---------- Base ---------- */
@@ -44,6 +47,12 @@ a:hover {
   border-bottom-color: var(--accent-hover);
 }
 
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* ---------- Top site header ---------- */
 .site-header {
   border-bottom: 1px solid var(--rule);
@@ -57,7 +66,7 @@ a:hover {
 .site-header-inner {
   max-width: var(--page-max);
   margin: 0 auto;
-  padding: 18px 36px;
+  padding: 18px var(--gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -144,7 +153,7 @@ a:hover {
 .page {
   max-width: var(--page-max);
   margin: 0 auto;
-  padding: 56px 36px 96px;
+  padding: 56px var(--gutter) 96px;
   display: grid;
   grid-template-columns: var(--sidebar-w) 1fr;
   gap: var(--gap);
@@ -153,7 +162,7 @@ a:hover {
 
 .page--no-sidebar {
   grid-template-columns: 1fr;
-  max-width: 880px;
+  max-width: var(--page-max);
 }
 
 /* ---------- Sidebar ---------- */
@@ -296,26 +305,41 @@ a:hover {
 }
 
 /* ---------- Headings ---------- */
+/* Three tiers, each a different family/size so the level is unambiguous:
+   page title (serif) > group label (sans) > paper title (serif). */
 h2 {
-  font-family: var(--sans);
-  font-size: 0.82rem;
+  font-family: var(--serif);
+  font-size: 1.95rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--ink-faint);
-  margin: 0 0 20px;
-  padding-bottom: 8px;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0 0 24px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--rule);
+  text-wrap: balance;
 }
 
 h3.subsection {
   font-family: var(--sans);
-  font-size: 0.78rem;
+  font-size: 1.45rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ink-muted);
-  margin: 32px 0 16px;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin: 48px 0 22px;
+}
+
+/* The first group label needs no leading gap — it opens the section. */
+h3.subsection:first-child,
+h2 + h3.subsection {
+  margin-top: 0;
+}
+
+/* A group label following a paper closes the group with the same hairline,
+   and the same 32px on either side, that separates two papers. */
+.paper + h3.subsection {
+  border-top: 1px solid var(--rule);
+  margin-top: 32px;
+  padding-top: 32px;
 }
 
 p {
@@ -332,26 +356,48 @@ em {
 
 /* ---------- Papers ---------- */
 .paper {
-  margin: 0 0 28px;
+  margin: 0 0 32px;
 }
 
 .paper:last-child {
   margin-bottom: 0;
 }
 
-.paper-title {
-  font-family: var(--serif);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0 0 4px;
-  line-height: 1.35;
+/* Hairline only between consecutive entries — the same separator the news,
+   talks and CV lists use — so no stray rule is left above the next heading. */
+.paper + .paper {
+  border-top: 1px solid var(--rule);
+  padding-top: 32px;
 }
 
-.paper-meta {
+.paper-title {
+  font-family: var(--serif);
+  font-size: 1.32rem;
+  font-weight: 600;
+  margin: 0 0 6px;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.paper-meta,
+.paper-links {
   font-family: var(--sans);
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--ink-muted);
-  margin: 0 0 8px;
+  margin: 0 0 10px;
+}
+
+/* Poster / Website carry the same weight as the paper title. */
+.paper-links a {
+  font-weight: 600;
+}
+
+.paper-status {
+  font-style: italic;
+}
+
+.paper-sep {
+  color: var(--ink-faint);
 }
 
 .paper-meta .sep {
@@ -364,9 +410,9 @@ em {
 }
 
 .paper-abstract {
-  font-size: 0.97rem;
+  font-size: 1.08rem;
   color: var(--ink-muted);
-  line-height: 1.6;
+  line-height: 1.68;
   margin: 0;
 }
 
@@ -383,29 +429,57 @@ em {
   color: var(--ink);
 }
 
-/* ---------- Lists ---------- */
-.wip-list {
+.paper-abstract strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.paper-presentations {
   font-family: var(--sans);
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   color: var(--ink-muted);
-  padding-left: 1.2em;
+  line-height: 1.6;
+  margin: 12px 0 0;
+}
+
+.paper-presentations em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.paper-presentations .presentation-note {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+/* ---------- Lists ---------- */
+/* Entries are set like .paper-title so a work-in-progress reads as the same
+   kind of object as a working paper, but with no rule between them. */
+.wip-list {
+  list-style: none;
+  font-family: var(--serif);
+  font-size: 1.32rem;
+  font-weight: 600;
+  color: var(--ink);
+  padding-left: 0;
   margin: 0;
 }
 
 .wip-list li {
-  margin-bottom: 8px;
-  line-height: 1.55;
+  margin-bottom: 32px;
+  line-height: 1.4;
 }
 
-/* ---------- Section intro callout ---------- */
+.wip-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Section intro ---------- */
 .section-intro {
-  font-size: 0.95rem;
-  color: var(--ink-muted);
+  font-size: 1.2rem;
+  color: var(--ink);
   margin: 0 0 24px;
-  padding: 10px 14px;
-  background: rgba(122, 46, 46, 0.04);
-  border-left: 2px solid var(--accent);
-  border-radius: 0 3px 3px 0;
 }
 
 .section-intro:has(+ h3) {
@@ -550,7 +624,7 @@ em {
 footer {
   max-width: var(--page-max);
   margin: 0 auto;
-  padding: 24px 36px 40px;
+  padding: 24px var(--gutter) 40px;
   border-top: 1px solid var(--rule);
   font-family: var(--sans);
   font-size: 0.82rem;
@@ -564,11 +638,28 @@ footer p {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
+  :root {
+    /* The desktop shell is capped at a share of the viewport, which would
+       leave a phone with a fraction of its own width. Below the breakpoint the
+       gutter alone sets the margin. */
+    --page-max: 100%;
+    --gutter: 22px;
+  }
+
+  /* Name and nav stay on one line and wrap only if they must, rather than
+     always stacking into a two-row sticky header. */
   .site-header-inner {
-    flex-direction: column;
-    gap: 12px;
-    padding: 14px 22px;
-    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    padding: 14px var(--gutter);
+  }
+
+  .page-nav {
+    gap: 20px;
+  }
+
+  .content {
+    overflow-wrap: break-word;
   }
 
   .page-nav a[aria-current="page"]::after {
@@ -582,7 +673,7 @@ footer p {
   .page {
     grid-template-columns: 1fr;
     gap: 36px;
-    padding: 36px 22px 64px;
+    padding: 36px var(--gutter) 64px;
   }
 
   .sidebar {
@@ -605,7 +696,35 @@ footer p {
     font-size: 17px;
   }
 
+  /* The desktop scale is tuned for a ~1000px column; on a phone the same sizes
+     leave headings with too few words per line. */
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  h3.subsection {
+    font-size: 1.3rem;
+    margin-top: 40px;
+  }
+
+  .paper-title,
+  .wip-list {
+    font-size: 1.22rem;
+  }
+
+  .section-intro {
+    font-size: 1.1rem;
+  }
+
+  /* Justified text needs room to distribute; on a narrow column it opens
+     rivers of white space instead. */
+  .paper-abstract p,
+  .about-text {
+    text-align: left;
+    hyphens: none;
+  }
+
   footer {
-    padding: 20px 22px 32px;
+    padding: 20px var(--gutter) 32px;
   }
 }
