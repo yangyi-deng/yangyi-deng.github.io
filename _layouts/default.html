@@ -19,6 +19,9 @@
 
   <header class="site-header">
     <div class="site-header-inner">
+      <a class="site-name" href="{{ '/' | relative_url }}">
+        <span class="name-en">{{ site.author.name }}</span>
+      </a>
       {% include nav.html %}
     </div>
   </header>
