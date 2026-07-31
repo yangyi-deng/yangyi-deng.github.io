@@ -8,8 +8,6 @@ hide_sidebar: true
 ---
 
 <section>
-  <h2>Research</h2>
-
   {% assign jmp = site.publications | where: "section", "jmp" | sort: "date" | reverse %}
   {% if jmp.size > 0 %}
     <h3 class="subsection">Job Market Paper</h3>
@@ -41,17 +39,10 @@ hide_sidebar: true
 
           {% if pub.coauthors %}
             (with
-            {% for c in pub.coauthors %}
-              {% if c.url %}
-                <a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>
-              {% else %}
-                {{ c.name }}
-              {% endif %}
-              {% unless forloop.last %}
-                {% if forloop.rindex == 2 %}, and {% else %}, {% endif %}
-              {% endunless %}
-            {% endfor %}
-            )
+            {%- for c in pub.coauthors -%}
+              {%- if forloop.index == 1 %} {% elsif forloop.last %}{% if forloop.length > 2 %},{% endif %} and {% else %}, {% endif -%}
+              {%- if c.url -%}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{%- else -%}{{ c.name }}{%- endif -%}
+            {%- endfor -%})
           {% endif %}
         </h4>
 
@@ -86,9 +77,28 @@ hide_sidebar: true
         {% endif %}
 
         {% if pub.content != "" %}
+          {%- capture rendered -%}{{ pub.content | markdownify }}{%- endcapture -%}
           <div class="paper-abstract">
-            {{ pub.content | markdownify }}
+            {{ rendered | replace_first: '<p>', '<p><strong>Abstract:</strong> ' }}
           </div>
+        {% endif %}
+
+        {% if pub.presentations and pub.presentations.size > 0 %}
+          {%- assign has_coauthor_talk = false -%}
+          {%- for talk in pub.presentations -%}
+            {%- if talk.by_coauthor %}{% assign has_coauthor_talk = true %}{% endif -%}
+          {%- endfor -%}
+          <p class="paper-presentations">
+            <em>Presented at</em>
+            {% for talk in pub.presentations -%}
+              {%- if forloop.last and forloop.length > 1 -%}{% if forloop.length > 2 %},{% endif %} and {% elsif forloop.index > 1 %}, {% else %} {% endif -%}
+              {%- if talk.url -%}<a href="{{ talk.url }}" target="_blank" rel="noopener">{{ talk.name }}</a>{%- else -%}{{ talk.name }}{%- endif -%}
+              {%- if talk.by_coauthor %}<sup>*</sup>{% endif %}
+            {%- endfor -%}.
+            {% if has_coauthor_talk %}
+              <span class="presentation-note"><sup>*</sup> presented by coauthors.</span>
+            {% endif %}
+          </p>
         {% endif %}
       </article>
     {% endfor %}
@@ -104,18 +114,11 @@ hide_sidebar: true
           {{ pub.title }}
           {% if pub.coauthors %}
             (with
-            {% for c in pub.coauthors %}
-              {% if c.url %}
-                <a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>
-              {% else %}
-                {{ c.name }}
-              {% endif %}
-              {% unless forloop.last %}
-                {% if forloop.rindex == 2 %}, and {% else %}, {% endif %}
-              {% endunless %}
-            {% endfor %}
-            )
-          {% endif %}.
+            {%- for c in pub.coauthors -%}
+              {%- if forloop.index == 1 %} {% elsif forloop.last %}{% if forloop.length > 2 %},{% endif %} and {% else %}, {% endif -%}
+              {%- if c.url -%}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{%- else -%}{{ c.name }}{%- endif -%}
+            {%- endfor -%})
+          {% endif %}
         </li>
       {% endfor %}
     </ul>
