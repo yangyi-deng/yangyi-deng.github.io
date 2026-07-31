@@ -1,6 +1,7 @@
 {%- comment -%}
 Renders one publication entry. Pass via: {% include publication.html pub=pub %}
-Frontmatter fields used: title, date, coauthors, venue, paperurl, slidesurl, doi, status
+Frontmatter fields used: title, date, coauthors, venue, paperurl, slidesurl, doi, status, presentations
+  presentations: list of { name, url, by_coauthor } — by_coauthor: true marks talks given by coauthors
 The body of the markdown file is rendered as the abstract.
 {%- endcomment -%}
 <article class="paper">
@@ -52,6 +53,23 @@ The body of the markdown file is rendered as the abstract.
   </p>
   {%- if include.pub.content and include.pub.content != "" -%}
     {%- capture rendered -%}{{ include.pub.content | markdownify }}{%- endcapture -%}
-    <div class="paper-abstract">{{ rendered | replace_first: '<p>', '<p><em>Abstract.</em> ' }}</div>
+    <div class="paper-abstract">{{ rendered | replace_first: '<p>', '<p><strong>Abstract:</strong> ' }}</div>
+  {%- endif -%}
+  {%- if include.pub.presentations and include.pub.presentations.size > 0 -%}
+    {%- assign has_coauthor_talk = false -%}
+    {%- for talk in include.pub.presentations -%}
+      {%- if talk.by_coauthor %}{% assign has_coauthor_talk = true %}{% endif -%}
+    {%- endfor -%}
+    <p class="paper-presentations">
+      <em>Presented at</em>
+      {% for talk in include.pub.presentations -%}
+        {%- if forloop.last and forloop.length > 1 -%}{% if forloop.length > 2 %},{% endif %} and {% elsif forloop.index > 1 %}, {% else %} {% endif -%}
+        {%- if talk.url -%}<a href="{{ talk.url }}" target="_blank" rel="noopener">{{ talk.name }}</a>{%- else -%}{{ talk.name }}{%- endif -%}
+        {%- if talk.by_coauthor %}<sup>*</sup>{% endif %}
+      {%- endfor -%}.
+      {% if has_coauthor_talk %}
+        <span class="presentation-note"><sup>*</sup> presented by coauthors.</span>
+      {% endif %}
+    </p>
   {%- endif -%}
 </article>
