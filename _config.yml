@@ -15,8 +15,8 @@ author:
   institution:    "The Chinese University of Hong Kong"
   email:          "dengyangyi@link.cuhk.edu.hk"
   location:       "Hong Kong"
-  photo:          "/images/profile.jpg"
-  cv:             ""
+  photo:          "/images/profile.jpg" 
+  cv: "https://www.dropbox.com/scl/fi/9kobn5uqrsmd61cfzw7to/CV-Yangyi-Deng.pdf?rlkey=jtjqviw6l3se9sx9nqbj8rzp6&st=k5wglge0&dl=0"
   googlescholar:  ""
   github:         ""
  
