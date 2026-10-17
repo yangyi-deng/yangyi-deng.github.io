@@ -11,7 +11,7 @@ Static Jekyll site. To **maintain** it, you almost never touch HTML or CSS — y
 | Talk        | `_talks/YYYY-MM-DD-shortname.md` |
 | Course      | `_teaching/YYYY-shortname.md` |
 | Anything in the About blurb | `index.html` (top section) |
-| CV content  | `cv.html` |
+| CV link     | `cv:` in `_config.yml` (home-page CV button) |
 
 Site-wide info (your name, affiliation, email, links) lives in **`_config.yml`**. Edit once, propagates everywhere.
 Profile links (`googlescholar`, `ssrn`, `orcid`, `linkedin`, `github`) appear as buttons on the home page as soon as they are filled in.
@@ -92,7 +92,6 @@ index.html           about page
 publications.html    publications listing
 talks.html           talks listing
 teaching.html        teaching listing
-cv.html              CV page
 styles.css           styling (rarely edited)
 files/               PDFs (CV, papers, slides)
 images/              profile photo, etc.

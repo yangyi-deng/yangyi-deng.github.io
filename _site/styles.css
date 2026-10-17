@@ -755,21 +755,6 @@ p:last-child { margin-bottom: 0; }
   white-space: nowrap;
 }
 
-/* ---------- CV ---------- */
-.cv-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.cv-card p {
-  margin: 0;
-  font-family: var(--serif);
-  font-size: 1.1rem;
-}
-
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
   .home-grid {
