@@ -5,39 +5,110 @@ title: About
 permalink: /
 ---
 
-<section>
-  <p class="intro-role">{{ site.author.role }}</p>
-  <p class="intro-dept">{{ site.author.institution }}</p>
-</section>
+<div class="home-grid">
 
-<section>
-  <h2>Research Interests</h2>
-  <p>
-    Economic Design, Applied Microeconomic Theory, Industrial Organization
-  </p>
-</section>
+  <aside class="profile card">
+    {% if site.author.photo %}
+      <img class="profile-photo" src="{{ site.author.photo | relative_url }}" alt="Portrait of {{ site.author.name }}" width="600" height="900" />
+    {% endif %}
 
-<section>
-  <h2>Research Topics</h2>
-  <ul class="research-list">
-    <li>Economic Measurement and Index Design</li>
-    <li>Ranking, Evaluation, and Information Aggregation</li>
-    <li>Market Structure, Concentration, and Competition</li>
-    <li>AI, Incentives, and Team Organization</li>
-  </ul>
-</section>
+    <h1 class="profile-name">
+      <span class="name-en">{{ site.author.name }}</span>{% if site.author.name_zh %} <span class="name-zh" lang="zh-Hans">({{ site.author.name_zh }})</span>{% endif %}
+    </h1>
 
-<section>
-  <p class="about-text">
-    I am a PhD candidate in Business Economics at <a href="https://www.bschool.cuhk.edu.hk/departments/decisions-operations-and-technology/" target="_blank" rel="noopener">Department of Decisions, Operations and Technology</a>, <a href="https://www.bschool.cuhk.edu.hk/" target="_blank" rel="noopener">The Chinese University of Hong Kong (CUHK) Business School</a>.
-  </p>
-  <p class="about-text">
-    My research studies how economic measures and rankings should be designed when the objects being measured are multidimensional, interdependent, or imperfectly observed &mdash; features that standard measures often fail to capture. I identify the principles a well-developed measure should satisfy, characterize the aggregation rules implied by those principles, and evaluate their empirical implications. Applications include scholarly evaluation, market concentration and merger screening, and ESG ratings. I also study how artificial intelligence shapes incentives, cooperation, and the organization of teamwork.
-  </p>
-  <!--
-  <p>
-    I am on the <strong>20XX–XX</strong> academic job market. Please feel free to reach out
-    at <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>.
-  </p>
-  -->
-</section>
+    <p class="profile-role">{{ site.author.role }}</p>
+    <p class="profile-affil">
+      {% if site.author.department_url %}<a href="{{ site.author.department_url }}" target="_blank" rel="noopener">{{ site.author.department }}</a>{% else %}{{ site.author.department }}{% endif %}<br />
+      {% if site.author.school_url %}<a href="{{ site.author.school_url }}" target="_blank" rel="noopener">{{ site.author.school }}</a>{% else %}{{ site.author.school }}{% endif %}
+    </p>
+
+    <ul class="profile-contact">
+      {% if site.author.email %}
+        <li>{% include icon.html name="mail" %}<a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></li>
+      {% endif %}
+      {% if site.author.location %}
+        <li>{% include icon.html name="pin" %}<span>{{ site.author.location }}</span></li>
+      {% endif %}
+    </ul>
+
+    <div class="profile-actions">
+      {% if site.author.cv %}
+        <a class="btn btn-primary" href="{{ site.author.cv }}" target="_blank" rel="noopener">{% include icon.html name="file" %}CV</a>
+      {% endif %}
+      {% if site.author.email %}
+        <a class="btn" href="mailto:{{ site.author.email }}">{% include icon.html name="mail" %}Email</a>
+      {% endif %}
+      {% if site.author.googlescholar != "" and site.author.googlescholar %}
+        <a class="btn" href="{{ site.author.googlescholar }}" target="_blank" rel="noopener">{% include icon.html name="scholar" %}Google Scholar</a>
+      {% endif %}
+      {% if site.author.ssrn != "" and site.author.ssrn %}
+        <a class="btn" href="{{ site.author.ssrn }}" target="_blank" rel="noopener">{% include icon.html name="ssrn" %}SSRN</a>
+      {% endif %}
+      {% if site.author.orcid != "" and site.author.orcid %}
+        <a class="btn" href="{{ site.author.orcid }}" target="_blank" rel="noopener">{% include icon.html name="orcid" %}ORCID</a>
+      {% endif %}
+      {% if site.author.linkedin != "" and site.author.linkedin %}
+        <a class="btn" href="{{ site.author.linkedin }}" target="_blank" rel="noopener">{% include icon.html name="linkedin" %}LinkedIn</a>
+      {% endif %}
+      {% if site.author.github != "" and site.author.github %}
+        <a class="btn" href="{{ site.author.github }}" target="_blank" rel="noopener">{% include icon.html name="github" %}GitHub</a>
+      {% endif %}
+    </div>
+  </aside>
+
+  <div class="home-main">
+
+    <section class="card">
+      <h2 class="card-title">About</h2>
+      <div class="prose">
+        <p>
+          Hi, welcome to my website! I am a PhD candidate in Business Economics at the <a href="https://www.bschool.cuhk.edu.hk/departments/decisions-operations-and-technology/" target="_blank" rel="noopener">Department of Decisions, Operations and Technology</a>, <a href="https://www.bschool.cuhk.edu.hk/" target="_blank" rel="noopener">The Chinese University of Hong Kong (CUHK) Business School</a>.
+        </p>
+        <p>
+          My research studies how economic measures and rankings should be designed when the objects being measured are multidimensional, interdependent, or imperfectly observed &mdash; features that standard measures often fail to capture. I identify the principles a well-developed measure should satisfy, characterize the aggregation rules implied by those principles, and evaluate their empirical implications. Applications include scholarly evaluation, market concentration and merger screening, and ESG ratings. I also study how artificial intelligence shapes incentives, cooperation, and the organization of teamwork.
+        </p>
+      </div>
+      <!--
+      <p class="job-market">
+        I am on the <strong>20XX–XX</strong> academic job market. Please feel free to reach out
+        at <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>.
+      </p>
+      -->
+    </section>
+
+    <div class="home-cards">
+      <section class="card">
+        <h2 class="card-title">{% include icon.html name="compass" %}Research Interests</h2>
+        <ul class="chip-list">
+          <li class="chip">Economic Design</li>
+          <li class="chip">Applied Microeconomic Theory</li>
+          <li class="chip">Industrial Organization</li>
+        </ul>
+
+        <h3 class="card-label">Research Topics</h3>
+        <ul class="topic-list">
+          <li>Economic Measurement and Index Design</li>
+          <li>Ranking, Evaluation, and Information Aggregation</li>
+          <li>Market Structure, Concentration, and Competition</li>
+          <li>AI, Incentives, and Team Organization</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2 class="card-title">{% include icon.html name="cap" %}Education</h2>
+        <ul class="edu-list">
+          <li>
+            <div class="edu-degree">Ph.D. in Decisions, Operations and Technology</div>
+            <div class="edu-line"><span class="edu-school">The Chinese University of Hong Kong</span><span class="edu-year">2023 – present</span></div>
+          </li>
+          <li>
+            <div class="edu-degree">B.A. in Economics</div>
+            <div class="edu-degree">B.S. in Mathematics</div>
+            <div class="edu-line"><span class="edu-school">Renmin University of China</span><span class="edu-year">2017 – 2021</span></div>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+  </div>
+</div>

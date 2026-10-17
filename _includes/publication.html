@@ -1,75 +1,78 @@
 {%- comment -%}
-Renders one publication entry. Pass via: {% include publication.html pub=pub %}
-Frontmatter fields used: title, date, coauthors, venue, paperurl, slidesurl, doi, status, presentations
-  presentations: list of { name, url, by_coauthor } — by_coauthor: true marks talks given by coauthors
-The body of the markdown file is rendered as the abstract.
+Renders one paper card. Pass via: {% include publication.html pub=pub %}
+Frontmatter fields used:
+  title, section, date, coauthors (list of { name, url }), venue, status,
+  paperurl (links the title), slidesurl, posterurl, websiteurl, doi,
+  presentations (list of { name, url, by_coauthor }).
+The body of the markdown file is rendered as a collapsible abstract.
 {%- endcomment -%}
-<article class="paper">
-  <h4 class="paper-title">{{ include.pub.title }}</h4>
-  <p class="paper-meta">
-    {%- assign sep_needed = false -%}
-    {%- if include.pub.date and include.pub.section != 'wip' -%}
-      <span class="paper-date">{{ include.pub.date | date: "%B %Y" }}</span>
-      {%- assign sep_needed = true -%}
-    {%- endif -%}
+{%- assign pub = include.pub -%}
+{%- assign abstract = pub.content | strip -%}
+<article class="paper card">
+  <div class="paper-head">
+    <div class="paper-heading">
+      <h3 class="paper-title">
+        {%- if pub.paperurl -%}
+          <a href="{{ pub.paperurl | relative_url }}" target="_blank" rel="noopener">{{ pub.title }}</a>
+        {%- else -%}
+          {{ pub.title }}
+        {%- endif -%}
+      </h3>
 
-    {%- if include.pub.coauthors -%}
-      {%- if sep_needed %} <span class="sep">·</span> {% endif -%}
-      with{% for c in include.pub.coauthors -%}
-        {%- if forloop.last and forloop.length > 1 -%}{% if forloop.length > 2 %},{% endif %} and {% elsif forloop.index > 1 %}, {% else %} {% endif -%}
-        {%- if c.url -%}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{%- else -%}{{ c.name }}{%- endif -%}
-      {%- endfor -%}
-      {%- assign sep_needed = true -%}
-    {%- endif -%}
+      {%- if pub.coauthors %}
+        <p class="paper-authors">with
+          {%- for c in pub.coauthors -%}
+            {%- if forloop.index == 1 %} {% elsif forloop.last %}{% if forloop.length > 2 %},{% endif %} and {% else %}, {% endif -%}
+            {%- if c.url -%}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{%- else -%}{{ c.name }}{%- endif -%}
+          {%- endfor -%}
+        </p>
+      {%- endif %}
 
-    {%- if include.pub.venue -%}
-      {%- if sep_needed %} <span class="sep">·</span> {% endif -%}
-      <em>{{ include.pub.venue }}</em>
-      {%- assign sep_needed = true -%}
-    {%- endif -%}
+      {%- if pub.venue or pub.status %}
+        <p class="paper-venue">
+          {%- if pub.venue -%}
+            <em>{{ pub.venue }}</em>{% if pub.section == 'published' and pub.date %}, {{ pub.date | date: "%Y" }}{% endif %}
+          {%- endif -%}
+          {%- if pub.venue and pub.status %} <span class="sep">·</span> {% endif -%}
+          {%- if pub.status -%}
+            <span class="paper-status">{{ pub.status | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</span>
+          {%- endif -%}
+        </p>
+      {%- endif %}
+    </div>
 
-    {%- if include.pub.paperurl -%}
-      {%- if sep_needed %} <span class="sep">·</span> {% endif -%}
-      <a href="{{ include.pub.paperurl | relative_url }}">Link</a>
-      {%- assign sep_needed = true -%}
-    {%- endif -%}
+    {%- if pub.slidesurl or pub.posterurl or pub.websiteurl or pub.doi %}
+      <div class="paper-links">
+        {%- if pub.doi %}<a class="btn btn-sm" href="{{ pub.doi }}" target="_blank" rel="noopener">{% include icon.html name="external" %}DOI</a>{% endif -%}
+        {%- if pub.slidesurl %}<a class="btn btn-sm" href="{{ pub.slidesurl | relative_url }}" target="_blank" rel="noopener">{% include icon.html name="file" %}Slides</a>{% endif -%}
+        {%- if pub.posterurl %}<a class="btn btn-sm" href="{{ pub.posterurl | relative_url }}" target="_blank" rel="noopener">{% include icon.html name="file" %}Poster</a>{% endif -%}
+        {%- if pub.websiteurl %}<a class="btn btn-sm" href="{{ pub.websiteurl }}" target="_blank" rel="noopener">{% include icon.html name="external" %}Website</a>{% endif -%}
+      </div>
+    {%- endif %}
+  </div>
 
-    {%- if include.pub.slidesurl -%}
-      {%- if sep_needed %} <span class="sep">·</span> {% endif -%}
-      <a href="{{ include.pub.slidesurl | relative_url }}">[Slides]</a>
-      {%- assign sep_needed = true -%}
-    {%- endif -%}
+  {%- if abstract != "" %}
+    <details class="paper-abstract">
+      <summary>Abstract{% include icon.html name="chevron" %}</summary>
+      <div class="paper-abstract-body">{{ pub.content | markdownify }}</div>
+    </details>
+  {%- endif %}
 
-    {%- if include.pub.doi -%}
-      {%- if sep_needed %} <span class="sep">·</span> {% endif -%}
-      <a href="{{ include.pub.doi }}" target="_blank" rel="noopener">[DOI]</a>
-      {%- assign sep_needed = true -%}
-    {%- endif -%}
-
-    {%- if include.pub.status -%}
-      {%- if sep_needed %} <span class="sep">·</span> {% endif -%}
-      <span class="status">{{ include.pub.status | markdownify | remove: '<p>' | remove: '</p>' | strip_newlines }}</span>
-    {%- endif -%}
-  </p>
-  {%- if include.pub.content and include.pub.content != "" -%}
-    {%- capture rendered -%}{{ include.pub.content | markdownify }}{%- endcapture -%}
-    <div class="paper-abstract">{{ rendered | replace_first: '<p>', '<p><strong>Abstract:</strong> ' }}</div>
-  {%- endif -%}
-  {%- if include.pub.presentations and include.pub.presentations.size > 0 -%}
+  {%- if pub.presentations and pub.presentations.size > 0 %}
     {%- assign has_coauthor_talk = false -%}
-    {%- for talk in include.pub.presentations -%}
+    {%- for talk in pub.presentations -%}
       {%- if talk.by_coauthor %}{% assign has_coauthor_talk = true %}{% endif -%}
-    {%- endfor -%}
-    <p class="paper-presentations">
-      <em>Presented at</em>
-      {% for talk in include.pub.presentations -%}
-        {%- if forloop.last and forloop.length > 1 -%}{% if forloop.length > 2 %},{% endif %} and {% elsif forloop.index > 1 %}, {% else %} {% endif -%}
+    {%- endfor %}
+    <p class="paper-talks">
+      <span class="paper-talks-label">Presented at</span>
+      {% for talk in pub.presentations -%}
+        {%- if forloop.last and forloop.length > 1 -%}{% if forloop.length > 2 %},{% endif %} and {% elsif forloop.index > 1 %}, {% endif -%}
         {%- if talk.url -%}<a href="{{ talk.url }}" target="_blank" rel="noopener">{{ talk.name }}</a>{%- else -%}{{ talk.name }}{%- endif -%}
         {%- if talk.by_coauthor %}<sup>*</sup>{% endif %}
       {%- endfor -%}.
-      {% if has_coauthor_talk %}
-        <span class="presentation-note"><sup>*</sup> presented by coauthors.</span>
-      {% endif %}
+      {%- if has_coauthor_talk %}
+        <span class="paper-talks-note"><sup>*</sup>Presented by coauthors.</span>
+      {%- endif %}
     </p>
-  {%- endif -%}
+  {%- endif %}
 </article>

@@ -12,12 +12,20 @@ author:
   name:           "Yangyi Deng"
   name_zh:        "邓扬义"
   role:           "PhD Candidate in Business Economics"
+  department:     "Department of Decisions, Operations and Technology"
+  department_url: "https://www.bschool.cuhk.edu.hk/departments/decisions-operations-and-technology/"
+  school:         "The Chinese University of Hong Kong (CUHK) Business School"
+  school_url:     "https://www.bschool.cuhk.edu.hk/"
   institution:    "The Chinese University of Hong Kong"
   email:          "dengyangyi@link.cuhk.edu.hk"
-  location:       "Hong Kong"
-  photo:          "/images/profile.jpg" 
-  cv: "https://www.dropbox.com/scl/fi/9kobn5uqrsmd61cfzw7to/CV-Yangyi-Deng.pdf?rlkey=jtjqviw6l3se9sx9nqbj8rzp6&st=k5wglge0&dl=0"
+  location:       "Shatin, N.T., Hong Kong"
+  photo:          "/images/profile-web.jpg"
+  cv: "https://www.dropbox.com/scl/fi/gzvd0t9235bb6c57jdxtg/CV-Yangyi-Deng.pdf?rlkey=1xowvlhpi93is8uun1mh2dg6u&st=a7waj4j4&dl=0"
+  # Profile links — each one shows up as a button on the home page once filled in.
   googlescholar:  ""
+  ssrn:           ""
+  orcid:          ""
+  linkedin:       ""
   github:         ""
  
 # ---------------------------------------------------------------------------

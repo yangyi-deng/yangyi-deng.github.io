@@ -1,16 +1,17 @@
 ---
 layout: default
 nav: cv
-header_compact: true
 title: CV
 permalink: /cv/
-hide_sidebar: true
 ---
 
-<section>
-  {% if site.author.cv %}
-    <p class="section-intro">
-      A complete PDF version is available <a href="{{ site.author.cv }}" target="_blank" rel="noopener noreferrer">here</a>.
-    </p>
-  {% endif %}
-</section>
+<header class="page-header">
+  <h1 class="page-title">Curriculum Vitae</h1>
+</header>
+
+{% if site.author.cv %}
+  <section class="card cv-card">
+    <p>The complete CV is available as a PDF.</p>
+    <a class="btn btn-primary" href="{{ site.author.cv }}" target="_blank" rel="noopener">{% include icon.html name="file" %}CV</a>
+  </section>
+{% endif %}

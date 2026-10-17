@@ -1,5 +1,5 @@
 ---
-title: "Interaction-Adjusted Concentration: A Quadratic Generalization of the HHI"
+title: "Quadratic Concentration and Welfare with Interactions: Beyond the HHI"
 section: working 
 date: 2026-04-21
 coauthors:
@@ -22,4 +22,4 @@ presentations:
     by_coauthor: true
 ---
 
-Conventional concentration measures like the Herfindahl-Hirschman Index (HHI) assume product homogeneity, failing to distinguish markets with varying degrees of substitutability and complementarity. We generalize the HHI by axiomatically deriving quadratic concentration and welfare indices that incorporate pairwise interactions. We also provide welfare-theoretic foundations for their applications in differentiated-product markets. A key insight from the quadratic concentration index is its relationship with surplus distribution: for substitutes, higher concentration correlates with a higher producers’ share—mirroring the classic HHI result—but the relationship reverses for complements. This implies stricter scrutiny for substitute-heavy markets and greater leniency for complementary ones. We further develop a parametric family of quadratic welfare indices that directly link to weighted total surplus, enabling tailored welfare standards. Applied to merger analysis, these indices suggest refined screening guidelines: output-increasing mergers warrant minimal review; when output may fall, screening tightens beyond current HHI-based guidelines.
+We axiomatically characterize quadratic concentration and welfare indices that generalize the HHI by incorporating pairwise interactions. In differentiated-product markets, the quadratic concentration index adjusts the HHI for the strength and direction of product interactions, raising measured concentration for substitutes and lowering it for complements. Combining this index with aggregate output yields quadratic welfare indices whose interaction weights reflect the relative emphasis on consumers versus producers. The welfare effect of a merger depends jointly on the levels and changes in concentration and aggregate output. An application to U.S. automobiles illustrates how product interactions shape concentration measurement and merger screening.

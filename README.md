@@ -14,6 +14,7 @@ Static Jekyll site. To **maintain** it, you almost never touch HTML or CSS — y
 | CV content  | `cv.html` |
 
 Site-wide info (your name, affiliation, email, links) lives in **`_config.yml`**. Edit once, propagates everywhere.
+Profile links (`googlescholar`, `ssrn`, `orcid`, `linkedin`, `github`) appear as buttons on the home page as soon as they are filled in.
 
 ## Frontmatter cheat-sheet
 

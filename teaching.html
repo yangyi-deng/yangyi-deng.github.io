@@ -1,26 +1,39 @@
 ---
 layout: default
 nav: teaching
-header_compact: true
 title: Teaching
 permalink: /teaching/
-hide_sidebar: true
 ---
 
-<section>
-  {% if site.teaching.size > 0 %}
-    <h3 class="subsection">Teaching Assistant <span class="subsection-note">({{ site.author.institution }})</span></h3>
+<header class="page-header">
+  <h1 class="page-title">Teaching</h1>
+</header>
 
-    <ul class="teaching-list">
-      {%- assign prev_level = "" -%}
-      {% for course in site.teaching %}
-        {% if course.level == prev_level %}
-          {% include course.html course=course hide_level="yes" %}
-        {% else %}
-          {% include course.html course=course %}
-        {% endif %}
-        {%- assign prev_level = course.level -%}
-      {% endfor %}
-    </ul>
-  {% endif %}
-</section>
+{% if site.teaching.size > 0 %}
+  <section class="card teaching-card">
+    <div class="card-head">
+      <h2 class="card-title">Teaching Assistant</h2>
+      <p class="card-sub">{{ site.author.institution }}</p>
+    </div>
+
+    {%- comment -%} Levels in this order first; any other level follows. Newest course first within a level. {%- endcomment -%}
+    {% assign levels = "Undergraduate,Master,PhD" | split: "," %}
+    {% assign groups = site.teaching | group_by: "level" %}
+    {% for group in groups %}
+      {% unless levels contains group.name %}{% assign levels = levels | push: group.name %}{% endunless %}
+    {% endfor %}
+
+    {% for level in levels %}
+      {% assign courses = site.teaching | where: "level", level | sort: "date" | reverse %}
+      {% if courses.size == 0 %}{% continue %}{% endif %}
+      <div class="course-group">
+        <h3 class="course-level">{{ level }}</h3>
+        <ul class="course-list">
+          {% for course in courses %}
+            {% include course.html course=course %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </section>
+{% endif %}

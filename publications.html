@@ -1,126 +1,62 @@
 ---
 layout: default
 nav: publications
-header_compact: true
 title: Research
 permalink: /publications/
-hide_sidebar: true
 ---
 
-<section>
-  {% assign jmp = site.publications | where: "section", "jmp" | sort: "date" | reverse %}
-  {% if jmp.size > 0 %}
-    <h3 class="subsection subsection--blue">Job Market Paper</h3>
+<header class="page-header">
+  <h1 class="page-title">Research</h1>
+</header>
+
+{% assign jmp = site.publications | where: "section", "jmp" | sort: "date" | reverse %}
+{% if jmp.size > 0 %}
+  <section class="paper-section">
+    <h2 class="section-title">Job Market Paper</h2>
     {% for pub in jmp %}
       {% include publication.html pub=pub %}
     {% endfor %}
-  {% endif %}
+  </section>
+{% endif %}
 
-  {% assign published = site.publications | where: "section", "published" | sort: "date" | reverse %}
-  {% if published.size > 0 %}
-    <h3 class="subsection subsection--blue">Published</h3>
+{% assign published = site.publications | where: "section", "published" | sort: "date" | reverse %}
+{% if published.size > 0 %}
+  <section class="paper-section">
+    <h2 class="section-title">Publication</h2>
     {% for pub in published %}
       {% include publication.html pub=pub %}
     {% endfor %}
-  {% endif %}
+  </section>
+{% endif %}
 
-  {% assign working = site.publications | where: "section", "working" | sort: "date" | reverse %}
-  {% if working.size > 0 %}
-    <h3 class="subsection subsection--blue">Working Papers</h3>
-
+{% assign working = site.publications | where: "section", "working" | sort: "date" | reverse %}
+{% if working.size > 0 %}
+  <section class="paper-section">
+    <h2 class="section-title">Working Papers</h2>
     {% for pub in working %}
-      <article class="paper">
-        <h4 class="paper-title">
-          {% if pub.paperurl %}
-            <a href="{{ pub.paperurl }}" target="_blank" rel="noopener">{{ pub.title }}</a>
-          {% else %}
-            {{ pub.title }}
-          {% endif %}
-
-          {% if pub.coauthors %}
-            (with
-            {%- for c in pub.coauthors -%}
-              {%- if forloop.index == 1 %} {% elsif forloop.last %}{% if forloop.length > 2 %},{% endif %} and {% else %}, {% endif -%}
-              {%- if c.url -%}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{%- else -%}{{ c.name }}{%- endif -%}
-            {%- endfor -%})
-          {% endif %}
-        </h4>
-
-        {% if pub.status or pub.venue %}
-          <p class="paper-meta">
-            {% if pub.status %}
-              <span class="paper-status">{{ pub.status }}</span>
-            {% endif %}
-            {% if pub.status and pub.venue %}
-              <span class="paper-sep"> · </span>
-            {% endif %}
-            {% if pub.venue %}
-              <span class="paper-venue">{{ pub.venue }}</span>
-            {% endif %}
-          </p>
-        {% endif %}
-
-        {% if pub.posterurl or pub.websiteurl %}
-          <p class="paper-links">
-            {% if pub.posterurl %}
-              <a href="{{ pub.posterurl }}" target="_blank" rel="noopener">Poster</a>
-            {% endif %}
-
-            {% if pub.posterurl and pub.websiteurl %}
-              <span class="paper-sep"> · </span>
-            {% endif %}
-
-            {% if pub.websiteurl %}
-              <a href="{{ pub.websiteurl }}" target="_blank" rel="noopener">Website</a>
-            {% endif %}
-          </p>
-        {% endif %}
-
-        {% if pub.content != "" %}
-          {%- capture rendered -%}{{ pub.content | markdownify }}{%- endcapture -%}
-          <div class="paper-abstract">
-            {{ rendered | replace_first: '<p>', '<p><strong>Abstract:</strong> ' }}
-          </div>
-        {% endif %}
-
-        {% if pub.presentations and pub.presentations.size > 0 %}
-          {%- assign has_coauthor_talk = false -%}
-          {%- for talk in pub.presentations -%}
-            {%- if talk.by_coauthor %}{% assign has_coauthor_talk = true %}{% endif -%}
-          {%- endfor -%}
-          <p class="paper-presentations">
-            <em>Presented at</em>
-            {% for talk in pub.presentations -%}
-              {%- if forloop.last and forloop.length > 1 -%}{% if forloop.length > 2 %},{% endif %} and {% elsif forloop.index > 1 %}, {% else %} {% endif -%}
-              {%- if talk.url -%}<a href="{{ talk.url }}" target="_blank" rel="noopener">{{ talk.name }}</a>{%- else -%}{{ talk.name }}{%- endif -%}
-              {%- if talk.by_coauthor %}<sup>*</sup>{% endif %}
-            {%- endfor -%}.
-            {% if has_coauthor_talk %}
-              <span class="presentation-note"><sup>*</sup> presented by coauthors.</span>
-            {% endif %}
-          </p>
-        {% endif %}
-      </article>
+      {% include publication.html pub=pub %}
     {% endfor %}
-  {% endif %}
+  </section>
+{% endif %}
 
-  {% assign wip = site.publications | where: "section", "wip" %}
-  {% if wip.size > 0 %}
-    <h3 class="subsection subsection--blue">Work in Progress</h3>
-
-    <ul class="wip-list">
+{% assign wip = site.publications | where: "section", "wip" %}
+{% if wip.size > 0 %}
+  <section class="paper-section">
+    <h2 class="section-title">Work in Progress</h2>
+    <ul class="wip-list card">
       {% for pub in wip %}
         <li>
-          {{ pub.title }}
-          {% if pub.coauthors %}
-            (with
-            {%- for c in pub.coauthors -%}
-              {%- if forloop.index == 1 %} {% elsif forloop.last %}{% if forloop.length > 2 %},{% endif %} and {% else %}, {% endif -%}
-              {%- if c.url -%}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{%- else -%}{{ c.name }}{%- endif -%}
-            {%- endfor -%})
-          {% endif %}
+          <span class="wip-title">{{ pub.title }}</span>
+          {%- if pub.coauthors %}
+            <span class="wip-authors">with
+              {%- for c in pub.coauthors -%}
+                {%- if forloop.index == 1 %} {% elsif forloop.last %}{% if forloop.length > 2 %},{% endif %} and {% else %}, {% endif -%}
+                {%- if c.url -%}<a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.name }}</a>{%- else -%}{{ c.name }}{%- endif -%}
+              {%- endfor -%}
+            </span>
+          {%- endif %}
         </li>
       {% endfor %}
     </ul>
-  {% endif %}
-</section>
+  </section>
+{% endif %}
