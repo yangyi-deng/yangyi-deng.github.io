@@ -89,7 +89,8 @@ _publications/       one .md per paper
 _talks/              one .md per talk
 _teaching/           one .md per course
 index.html           about page
-publications.html    publications listing
+research.html        research listing (served at /research/)
+publications.html    redirect from the old /publications/ URL
 talks.html           talks listing
 teaching.html        teaching listing
 styles.css           styling (rarely edited)
