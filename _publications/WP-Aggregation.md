@@ -5,6 +5,7 @@ date: 2026-04-20
 coauthors:
   - name: "Chiu Yu Ko"
     url: "https://kochiuyu.github.io"
+posterurl: "https://www.dropbox.com/scl/fi/nw92s4189tkyrqn2sm4jj/Aggregation-Poster.pdf?rlkey=mqomtedxpu9x2yuyhhq2l2i2o&st=i7vpmi4w&dl=0"
 presentations:
   - name: "the 2026 Greater Bay Area Economics Conference"
     url: "https://sites.google.com/view/2026-gbaec"
