@@ -10,8 +10,8 @@ presentations:
   - name: "the 2026 Greater Bay Area Economics Conference"
     url: "https://sites.google.com/view/2026-gbaec"
   - name: "the 18th Meeting of the Society for Social Choice and Welfare"
-  - name: "the Asian Game Theory Conference 2026"
-  - name: "the Greater Bay Area Market Design Workshop 2026"
+  - name: "the 2026 Asian Game Theory Conference"
+  - name: "the 2026 Greater Bay Area Market Design Workshop"
   - name: "the 2026 CIBS International Symposium on Distributive Justice and Fair Allocation"
 ---
 
